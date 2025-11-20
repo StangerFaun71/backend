@@ -25,6 +25,10 @@ const db = new sqlite3.Database("./db/users.db", (err) => {
     if (err) return console.log(err.message);
     console.log("DB ok");
 });
+const items = new sqlite3.Database('./db/items.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
+    if (err) return console.log(err.message);
+    console.log("Adatbázis OK");
+});
 
 // Tábla létrehozás
 db.run(`
@@ -39,7 +43,7 @@ CREATE TABLE IF NOT EXISTS users (
     password TEXT
 )
 `);
-
+item.run()
 // ---------- Oldalak ----------
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "login.html"));
